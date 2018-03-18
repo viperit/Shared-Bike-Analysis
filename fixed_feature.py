@@ -227,11 +227,11 @@ def _generate_overall_avg_dis_cur_hour_table():
             overall_avg_dis_cur_hour[hour] = all_user_avg_dis_hour[hour] / all_user_count[hour]
         return overall_avg_dis_cur_hour
 
-    all_user_avg_dis_hour = get_overall_avg_dis_cur_hour()
-    with open("./data/temp/preprocess/all_user_avg_dis_hour.csv", 'w', newline='') as csv_file:
+    overall_avg_dis_cur_hour = get_overall_avg_dis_cur_hour()
+    with open("./data/temp/preprocess/overall_avg_dis_cur_hour.csv", 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(['key', 'value'])
-        for key, value in all_user_avg_dis_hour.items():
+        for key, value in overall_avg_dis_cur_hour.items():
             writer.writerow([key, value])
 
 

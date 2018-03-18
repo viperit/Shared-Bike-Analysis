@@ -21,7 +21,7 @@ def read_and_split_train():
         else:
             test_b_20.append(row)
 
-    with open("./data/temp/preprocess/train_b_20.csv", 'w+', newline='') as csv_file:
+    with open("./data/temp/preprocess/train_s_20.csv", 'w+', newline='') as csv_file:
         writer = csv.writer(csv_file)
         for row in train_s_20:
             writer.writerow(row)
@@ -29,3 +29,5 @@ def read_and_split_train():
         writer = csv.writer(csv_file)
         for row in test_b_20:
             writer.writerow(row)
+
+def creat_preprocessed_train_and_test():
