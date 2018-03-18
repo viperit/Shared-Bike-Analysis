@@ -91,7 +91,7 @@ def _generate_user_next_order_time_diff_table():
     def get_user_order_info():
         i = 0
         user_row = {}
-        csv_reader = csv.reader(open('./data/temp/train_hard.csv', encoding='utf-8'))
+        csv_reader = csv.reader(open('./data/temp/preprocess/train_s_20.csv', encoding='utf-8'))
         for row in csv_reader:
             i += 1
             if i == 1:
@@ -102,11 +102,12 @@ def _generate_user_next_order_time_diff_table():
             else:
                 user_row[row[1]].append(row)
         i = 0
-        csv_reader = csv.reader(open('./data/temp/test_hard.csv', encoding='utf-8'))
+        csv_reader = csv.reader(open('./data/temp/preprocess/test_b_20.csv', encoding='utf-8'))
         for row in csv_reader:
             i += 1
             if i == 1:
                 continue
+            
             if row[1] not in user_row:
                 user_row[row[1]] = []
                 user_row[row[1]].append(row)
@@ -115,26 +116,7 @@ def _generate_user_next_order_time_diff_table():
 
         for user in user_row:
             user_row[user].sort(key=lambda k: k[4], reverse=False)
-
-        user_order_info = {}
-
-        for user in user_row:
-            user_order_info[user] = {}
-            for i in range(len(user_row[user]) - 1):
-                user_order_info[user][user_row[user][i][4]] = user_row[user][i + 1][5]
-
-        return user_order_info
-
-    def get_user_order_info_time():
-        user_order_info = get_user_order_info()
-        user_order_info_time = {}
-
-        for user in user_order_info:
-            user_order_info_time[user] = []
-            for key, value in user_order_info[user].items():
-                user_order_info_time[user].append(key)
-        return user_order_info_time
-
+        return user_row
     # # 得到用户订单的排序
     # user_order_info = get_user_order_info()
     #
@@ -145,14 +127,13 @@ def _generate_user_next_order_time_diff_table():
     #         writer.writerow([key, value])
 
     # 得到用户订单时间的排序
-    user_order_info_time = get_user_order_info_time()
+    user_order_info_time = get_user_order_info()
 
     with open("./data/temp/preprocess/user_order_info_time.csv", 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(['key', 'value'])
         for key, value in user_order_info_time.items():
             writer.writerow([key, value])
-
 
 # 用户平均骑行距离／全部平均骑行距离: user_avg_dis_overall_avg_dis_ratio
 def _generate_user_avg_dis_overall_avg_dis_ratio_table():
@@ -224,7 +205,7 @@ def _generate_overall_avg_dis_cur_hour_table():
 
         overall_avg_dis_cur_hour = {}
         for hour in all_user_avg_dis_hour:
-            overall_avg_dis_cur_hour[hour] = all_user_avg_dis_hour[hour] / all_user_count[hour]
+            overall_avg_dis_cur_hour[hour] = round(all_user_avg_dis_hour[hour] / all_user_count[hour])
         return overall_avg_dis_cur_hour
 
     overall_avg_dis_cur_hour = get_overall_avg_dis_cur_hour()
@@ -249,3 +230,4 @@ def render_fixed_feature():
     _generate_user_avg_dis_overall_avg_dis_ratio_table()
     _generate_overall_avg_dis_cur_hour_table()
     _generate_overall_avg_dis_cur_period_table()
+
