@@ -1,4 +1,5 @@
 import math
+import csv
 
 __base32 = '0123456789bcdefghjkmnpqrstuvwxyz'
 __decodemap = { }
