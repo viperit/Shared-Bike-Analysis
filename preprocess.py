@@ -30,7 +30,68 @@ def read_and_split_train():
         for row in test_b_20:
             writer.writerow(row)
 
+import csv
+import function
+
+def read_feature_talbe():
+    ###read user_dis_info
+    i = 0
+    csv_reader = csv.reader(open('./data/temp/user_dis_info.csv', encoding='utf-8'))
+    user_dis_info = {}
+    for row in csv_reader:
+        i+=1
+        if i==1:
+            continue
+        user_dis_info[row[0]] = eval(row[1])
+
+    ###read user_dis_info
+    i = 0
+    csv_reader = csv.reader(open('./data/temp/preprocess/user_cur_hour_used_ratio.csv', encoding='utf-8'))
+    user_cur_hour_used_ratio = {}
+    for row in csv_reader:
+        i+=1
+        if i==1:
+            continue
+        user_cur_hour_used_ratio[row[0]] = eval(row[1])
+
+    ###read user_order_info_time
+    i = 0
+    csv_reader = csv.reader(open('./data/temp/preprocess/user_order_info_time.csv', encoding='utf-8'))
+    user_order_info_time = {}
+    for row in csv_reader:
+        i+=1
+        if i==1:
+            continue
+        user_order_info_time[row[0]] = eval(row[1])
+
+    ###read user_avg_dis_overall_avg_dis_ratio
+    i = 0
+    csv_reader = csv.reader(open('./data/temp/preprocess/user_avg_dis_overall_avg_dis_ratio.csv', encoding='utf-8'))
+    user_avg_dis_overall_avg_dis_ratio = {}
+    for row in csv_reader:
+        i+=1
+        if i==1:
+            continue
+        user_avg_dis_overall_avg_dis_ratio[row[0]] = eval(row[1])
+
+    ###read overall_avg_dis_cur_hour
+    i = 0
+    csv_reader = csv.reader(open('./data/temp/preprocess/overall_avg_dis_cur_hour.csv', encoding='utf-8'))
+    overall_avg_dis_cur_hour = {}
+    for row in csv_reader:
+        i+=1
+        if i==1:
+            continue
+        overall_avg_dis_cur_hour[row[0]] = eval(row[1])
+    
+    return user_dis_info,user_cur_hour_used_ratio,user_order_info_time,\
+            user_avg_dis_overall_avg_dis_ratio,overall_avg_dis_cur_hour
+
 def creat_preprocessed_train_and_test():
+    user_dis_info,user_cur_hour_used_ratio,user_order_info_time,\
+            user_avg_dis_overall_avg_dis_ratio,overall_avg_dis_cur_hour = read_feature_talbe()
+
+    
     i = 0
     with open("./data/train_hard.csv", 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)
