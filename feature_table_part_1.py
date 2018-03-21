@@ -118,9 +118,9 @@ def _create_region_table():
 # 构建每个点出发到达次数（非geofly）
 # 不区分起点和终点
 # 包括：
-# 1. 点的进热度(node_region_start_ratio.csv)
-# 2. 出热度(node_region_end_ratio.csv)
-# 3. 全局热度(node_region_overall_ratio.csv)
+# 1. 点的进热度(./data/temp/feature_table/node_region_start_ratio.csv)
+# 2. 出热度(./data/temp/feature_table/node_region_end_ratio.csv)
+# 3. 全局热度(./data/temp/feature_table/node_region_overall_ratio.csv)
 def _create_node_region_ratio_table():
     print("_create_node_region_ratio_table")
     node_count_start = {}
@@ -227,9 +227,9 @@ def _create_node_region_ratio_table():
 # 构建每个点出发到达次数（geofly）
 # 不区分起点和终点
 # 包括：
-# 1. 点的进热度(node_region_start_geofly_ratio.csv)
-# 2. 出热度(node_region_end_geofly_ratio.csv)
-# 3. 全局热度(node_geofly_region_overall_ratio.csv)
+# 1. 点的进热度(./data/temp/feature_table/node_region_start_geofly_ratio.csv)
+# 2. 出热度(./data/temp/feature_table/node_region_end_geofly_ratio.csv)
+# 3. 全局热度(./data/temp/feature_table/node_geofly_region_overall_ratio.csv)
 def _create_node_geofly_region_ratio_table():
     print("_create_node_geofly_region_ratio_table")
     # geofly

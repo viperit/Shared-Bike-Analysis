@@ -171,7 +171,7 @@ def _create_user_use_end_table():
 # 创建用户使用的终点的次数（geofly）表
 # ./data/temp/feature_table/user_use_end_geofly.csv
 def _create_user_use_end_geofly_ratio(node_neis):
-    def get_user_use_end_geofly():
+    def get_user_use_end_geofly(node_neis):
         user_use_end_geofly = {}
 
         i = 0
@@ -196,7 +196,7 @@ def _create_user_use_end_geofly_ratio(node_neis):
                         user_use_end_geofly[user][end] += 1
         return user_use_end_geofly
 
-    user_use_end_geofly = get_user_use_end_geofly()
+    user_use_end_geofly = get_user_use_end_geofly(node_neis)
     with open("./data/temp/feature_table/user_use_end_geofly.csv", 'w', newline='') as csv_file:
         writer = csv.writer(csv_file)
         writer.writerow(['key', 'value'])
