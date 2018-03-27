@@ -1,10 +1,11 @@
 # encoding: utf-8
 
 """
-单用户+双地点
+单用户+双地点+全用户
 """
 
 import csv
+import pandas as pd
 
 
 # 读取node_neis
